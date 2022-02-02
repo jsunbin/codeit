@@ -1,0 +1,33 @@
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.music {
+    background-color: #eee;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    padding: 50px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.music .title {
+    text-align: center;
+}
+
+.music .album-cover {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.lyrics {
+    text-align: center;
+        }
