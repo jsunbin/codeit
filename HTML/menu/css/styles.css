@@ -25,6 +25,12 @@ h2 {
     margin-bottom: 75px;
 }
 
+.food-container {
+    width: 660px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .food {
     width: 300px;
     background-color: white;
@@ -33,6 +39,10 @@ h2 {
     margin-bottom: 50px;
     border-radius: 10px;
     overflow: hidden;
+
+    float: left;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .food .info {
