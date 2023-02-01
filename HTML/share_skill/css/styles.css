@@ -1,0 +1,92 @@
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+#nav-menu {
+  list-style: none;
+  float: right;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+#nav-menu li {
+  float: left;
+}
+
+#nav-menu li a {
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 60px;
+  display: block;
+  color: rgba(0,0,0,.5);
+  text-decoration: none;
+}
+
+#nav-menu li a:hover {
+  background-color: #eeeeee;
+}
+
+.carousel-inner #fst-banner {
+  background-image: url("../images/guitar.jpg");
+  background-size: cover;
+  background-position: left center;
+  height: 400px;
+}
+
+.carousel-inner #snd-banner {
+  background-image: url("../images/makeup.jpg");
+  background-size: cover;
+  background-position: center top;
+  height: 400px;
+}
+
+.carousel-inner #thd-banner {
+  background-image: url("../images/cooking.jpg");
+  background-size: cover;
+  background-position: center center;
+  height: 400px;
+}
+
+.carousel-inner {
+  text-align: center;
+}
+
+.carousel-inner .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.carousel-inner .banner-info {
+  color: white;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.carousel-inner .banner-info h2 {
+  color: white;
+  font-size: 32px;
+  margin: 0
+}
+
+.carousel-inner .banner-info p {
+  color: white;
+  font-size: 22px;
+  padding: 0;
+  margin-top: 16px;
+  margin-bottom: 38px;
+}
+
+.carousel-inner .banner-info button {
+  font-size: 16px;
+  background-color: #5900E7;
+  padding: 10px 30px;
+  border-style: none;
+}
+
+.carousel-inner .banner-info button a {
+  text-decoration: none;
+  color: white;
+}
