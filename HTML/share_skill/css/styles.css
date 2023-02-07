@@ -2,127 +2,105 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
-#nav-menu {
-  list-style: none;
-  float: right;
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-}
-
-#nav-menu li {
-  float: left;
-}
-
-#nav-menu li a {
-  padding-left: 10px;
-  padding-right: 10px;
-  line-height: 60px;
-  display: block;
-  color: rgba(0,0,0,.5);
-  text-decoration: none;
-}
-
-#nav-menu li a:hover {
-  background-color: #eeeeee;
-}
-
-.carousel-inner #fst-banner {
-  background-image: url("../images/guitar.jpg");
-  background-size: cover;
-  background-position: left center;
+/* carousel */
+.carousel-item {
+  background-color: gray;
   height: 400px;
-}
-
-.carousel-inner #snd-banner {
-  background-image: url("../images/makeup.jpg");
-  background-size: cover;
-  background-position: center top;
-  height: 400px;
-}
-
-.carousel-inner #thd-banner {
-  background-image: url("../images/cooking.jpg");
-  background-size: cover;
-  background-position: center center;
-  height: 400px;
-}
-
-.carousel-inner {
   text-align: center;
 }
 
-.carousel-inner .helper {
+.carousel-item.item1 {
+  background-image: url('../images/guitar.jpg');
+    background-size: cover;
+  background-position: left center;
+}
+
+.carousel-item.item2 {
+  background-image: url('../images/makeup.jpg');
+    background-size: cover;
+  background-position: center top;
+}
+
+.carousel-item.item3 {
+  background-image: url('../images/cooking.jpg');
+    background-size: cover;
+  background-position: center center;
+}
+
+.helper {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
 
-.carousel-inner .banner-info {
-  color: white;
+.intro {
   display: inline-block;
-  text-align: center;
   vertical-align: middle;
 }
 
-.carousel-inner .banner-info h2 {
-  color: white;
+.intro h2 {
   font-size: 32px;
-  margin: 0
+  color: white;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 
-.carousel-inner .banner-info p {
-  color: white;
+.intro h3 {
   font-size: 22px;
-  padding: 0;
-  margin-top: 16px;
-  margin-bottom: 38px;
-}
-
-.carousel-inner .banner-info button {
-  font-size: 16px;
-  background-color: #5900E7;
-  padding: 10px 30px;
-  border-style: none;
-}
-
-.carousel-inner .banner-info button a {
-  text-decoration: none;
   color: white;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 48px;
+}
+
+.intro a {
+  background-color: #5900E7;
+  border-radius: 2px;
+  padding: 10px 30px;
+  color: white;
+  font-weight: 300;
+}
+
+/* alert */
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 /* grid */
-
-/* alert */
-#carousel-below-alert {
-  margin-top: 50px;  
-}
-
-.container .row .course-margin {
-  margin-bottom: 16px;
-}
-
-.container .row .course {
-  width: 225px;
-  margin-left: auto;
-  margin-right: auto;
+.course {
+  display: block;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
   margin-bottom: 20px;
-  overflow: hidden;
 
-  float: left;
 }
 
-.container .row .course .course-info {
+.course:hover { /*마우스를 올렸을 때*/
+  text-decoration: none;
+}
+
+.course .course-img {
+  display: block;
+}
+
+.course .course-info {
   padding: 10px;
 }
 
-.container .row .course .course-info h4 {
+.course .info h4 {
   font-size: 18px;
-  color: #4a4a44;
-  margin: 0;
+  color: #4a4a4a;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
-.container .row .course .course-info .user {
+.course .info .lecturer {
   font-size: 13px;
-  margin-top: 10px;
+  color: #4a4a4a;
+}
+
+.course .info .lecturer img,
+.course .info .lecturer .name {
+  vertical-align: middle; /*수직 가운데 정렬*/
 }
