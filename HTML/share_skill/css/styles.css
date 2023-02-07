@@ -90,3 +90,39 @@ body {
   text-decoration: none;
   color: white;
 }
+
+/* grid */
+
+/* alert */
+#carousel-below-alert {
+  margin-top: 50px;  
+}
+
+.container .row .course-margin {
+  margin-bottom: 16px;
+}
+
+.container .row .course {
+  width: 225px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  float: left;
+}
+
+.container .row .course .course-info {
+  padding: 10px;
+}
+
+.container .row .course .course-info h4 {
+  font-size: 18px;
+  color: #4a4a44;
+  margin: 0;
+}
+
+.container .row .course .course-info .user {
+  font-size: 13px;
+  margin-top: 10px;
+}
