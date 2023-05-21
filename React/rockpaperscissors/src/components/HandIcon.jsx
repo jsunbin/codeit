@@ -3,7 +3,7 @@ import rockImg from '../assets/rock.svg'
 import scissorImg from '../assets/scissor.svg'
 import paperImg from '../assets/paper.svg'
 
-export default function HandIcon({ value }) {
+export default function HandIcon({ className, value }) {
 
   const IMAGES = {
     rock: rockImg,
@@ -15,7 +15,7 @@ export default function HandIcon({ value }) {
 
   return (
     <>
-      <img src={src} alt={value} />
+      <img className={className} src={src} alt={value} />
     </>
   )
 }
