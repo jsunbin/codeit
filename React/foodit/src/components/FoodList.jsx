@@ -1,8 +1,12 @@
 import React from "react";
 import "./FoodList.css";
 
-function FoodListItem({ item }) {
+function FoodListItem({ item, onDelete }) {
   const { imgUrl, title, calorie, content } = item;
+
+  const handleDeleteClick = () => {
+    onDelete(item.id);
+  };
 
   return (
     <div className="FoodListItem">
@@ -10,16 +14,17 @@ function FoodListItem({ item }) {
       <div>{title}</div>
       <div>{calorie}</div>
       <div>{content}</div>
+      <button onClick={handleDeleteClick}>삭제</button>
     </div>
   );
 }
-export default function FoodList({ items }) {
+export default function FoodList({ items, onDelete }) {
   return (
     <ul className="FoodList">
       {items.map((item) => {
         return (
           <li>
-            <FoodListItem item={item} />
+            <FoodListItem item={item} onDelete={onDelete} />
           </li>
         );
       })}
