@@ -10,7 +10,7 @@ const INITIAL_VALUES = {
   content: "",
   imgFile: null,
 };
-export default function ReviewForm() {
+export default function ReviewForm({ onSubmitSuccess }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
   const [values, setValues] = useState(INITIAL_VALUES);
@@ -35,16 +35,20 @@ export default function ReviewForm() {
     formData.append("content", values.content);
     formData.append("imgFile", values.imgFile);
 
+    let result;
     try {
       setIsSubmitting(null);
       setIsSubmitting(true);
-      await createReviews(formData);
+      result = await createReviews(formData);
     } catch (error) {
       setSubmittingError(error);
       return;
     } finally {
       setIsSubmitting(false);
     }
+
+    const { review } = result;
+    onSubmitSuccess(review);
     setValues(INITIAL_VALUES);
 
     console.log(values);
