@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { createFood } from "../API/API";
 import FileInput from "./FileInput";
 import "./FoodForm.css";
 
@@ -19,10 +18,16 @@ function sanitize(type, value) {
   }
 }
 
-export default function FoodForm({ onSubmitSuccess }) {
+export default function FoodForm({
+  initialValues = INITIAL_VALUES,
+  initialPreview,
+  onCancel,
+  onSubmitSuccess,
+  onSubmit,
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
-  const [values, setValues] = useState(INITIAL_VALUES);
+  const [values, setValues] = useState(initialValues);
 
   const handleChange = (name, value) => {
     setValues((prev) => ({
@@ -48,7 +53,9 @@ export default function FoodForm({ onSubmitSuccess }) {
     try {
       setIsSubmitting(null);
       setIsSubmitting(true);
-      result = await createFood(formData);
+      console.log(onSubmit);
+      result = await onSubmit(formData);
+      console.log("츄라이", result);
     } catch (error) {
       setSubmittingError(error);
       return;
@@ -60,16 +67,24 @@ export default function FoodForm({ onSubmitSuccess }) {
     onSubmitSuccess(food);
     setValues(INITIAL_VALUES);
 
-    console.log(values);
+    console.log("d", values);
   };
 
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
-      <FileInput name="imgFile" value={values.imgFile} onChange={handleChange} />
+      <FileInput name="imgFile" value={values.imgFile} initialPreview={initialPreview} onChange={handleChange} />
       <input name="title" value={values.title} onChange={handleInputChange} />
       <input name="calorie" value={values.calorie} type="number" onChange={handleInputChange} />
       <textarea name="content" value={values.content} onChange={handleInputChange} />
-      <button type="submit">확인</button>
+      {onCancel && (
+        <button type="button" onClick={onCancel}>
+          취소
+        </button>
+      )}
+      <button type="submit" disabled={isSubmitting}>
+        확인
+      </button>
+      {submittingError && <p>{submittingError.message}</p>}
     </form>
   );
 }
