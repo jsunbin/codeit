@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export default function FileInput({ name, value, onChange }) {
-  const [preview, setPreview] = useState();
+export default function FileInput({ name, value, initialPreview, onChange }) {
+  const [preview, setPreview] = useState(initialPreview);
   const inputRef = useRef();
 
   const handleChange = (e) => {
@@ -36,10 +36,10 @@ export default function FileInput({ name, value, onChange }) {
      * useEffect의 콜백 함수에서 정리함수를 리턴하면 objectURL이 더 이상 사용하지 않을 때 해제할 수 있다.
      */
     return () => {
-      setPreview();
+      setPreview(initialPreview);
       URL.revokeObjectURL(nextPreview);
     };
-  }, [value]);
+  }, [value, initialPreview]);
 
   return (
     <div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getReviews } from "./API/API";
+import { createReviews, getReviews, updateReview } from "./API/API";
 import ReviewForm from "./components/ReviewForm";
 import ReviewList from "./components/ReviewList";
 
@@ -56,9 +56,18 @@ function App() {
     handleLoad({ order, offset, limit: LIMIT })
   }
 
-  const handleSubmitSuccess =  (review) => {
+  const handleCreateSuccess =  (review) => {
     setItems(prevItems => [review, ...prevItems]);
   }
+
+  const handleUpdateSucess = (review) => {
+    // prevItems State 배열에서 같은 아이디에 해당하는 리뷰를 찾아서 업데이트
+    setItems(prevItems => {
+      const splitIdx = prevItems.findIndex((item) => item.id === review.id)
+      return [...prevItems.slice(0, splitIdx), review, ...prevItems.slice(splitIdx+1)]
+      })
+    }
+  
 
   useEffect(() => {
     handleLoad({order, offset: 0, limit: LIMIT})
@@ -71,11 +80,11 @@ function App() {
         <button onClick={handleNewestClick}>최신순</button>
         <button onClick={handleBestClick}>베스트순</button>
       </div>
-      <ReviewForm onSubmitSuccess={handleSubmitSuccess}/>
-      <ReviewList items={sortedItems} onDelete={handleDelete}/>
+      <ReviewForm onSubmit={createReviews} onSubmitSuccess={handleCreateSuccess}/>
+      <ReviewList items={sortedItems} onDelete={handleDelete} onUpdate={updateReview} onUpdateSuccess={handleUpdateSucess}/>
       {hasNext && <button disabled={isLoading} onClick={handleLoadMore}>더보기</button>}
       {loadingError?.message && <span>{loadingError.message}</span>}
     </>
   );
-}
+  }
 export default App;
