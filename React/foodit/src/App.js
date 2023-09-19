@@ -4,27 +4,27 @@ import FoodForm from "./components/FoodForm";
 import FoodList from "./components/FoodList";
 
 function App() {
-  const [items, setItems] = useState([])
-  const [order, setOrder] = useState('createdAt');
+  const [items, setItems] = useState([]);
+  const [order, setOrder] = useState("createdAt");
   const [cursor, setCursor] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingError, setLoadingError] = useState(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const sortedItems = items.sort((a, b) => b[order] - a[order]);
 
   const handleNewestClick = () => {
-    setOrder('createdAt')
-  }
+    setOrder("createdAt");
+  };
 
   const handleCalorieClick = () => {
-    setOrder('calorie')
-  }
+    setOrder("calorie");
+  };
 
   const handleDelete = (id) => {
     const nextItems = items.filter((item) => item.id !== id);
-    setItems(nextItems)
-  }
+    setItems(nextItems);
+  };
 
   const handleLoad = async (options) => {
     let result;
@@ -34,11 +34,14 @@ function App() {
       result = await getFoods(options);
     } catch (error) {
       setLoadingError(error);
-      return;   
+      return;
     } finally {
       setIsLoading(false);
     }
-    const { foods, paging: { nextCursor }, } = result;
+    const {
+      foods,
+      paging: { nextCursor },
+    } = result;
 
     if (!options.cursor) {
       setItems(foods);
@@ -49,29 +52,32 @@ function App() {
   };
 
   const handleLoadMore = () => {
-    handleLoad({ order, cursor, search, });
+    handleLoad({ order, cursor, search });
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    setSearch(e.target['search'].value);
+    setSearch(e.target["search"].value);
   };
 
-  const handleCreateSuccess = (food) => {
-    setItems(prev => [food, ...prev])
-  }
+  const handleCreateSuccess = (newItem) => {
+    setItems((prevItems) => [newItem, ...prevItems]);
+  };
 
-  const handleUpdateSuccess = (food) => {
-    setItems(prevItems => {
-      const splitIdx = prevItems.findIndex((item) => item.id === food.id)
-      return [...prevItems.slice(0, splitIdx), food, ...prevItems.slice(splitIdx+1)]
-      })
-    }
+  const handleUpdateSuccess = (newItem) => {
+    setItems((prevItems) => {
+      const splitIdx = prevItems.findIndex((item) => item.id === newItem.id);
+      return [...prevItems.slice(0, splitIdx), newItem, ...prevItems.slice(splitIdx + 1)];
+    });
+  };
 
   useEffect(() => {
-    handleLoad({ order, search, })
-  }, [order, search])
-  
+    handleLoad({
+      order,
+      search,
+    });
+  }, [order, search]);
+
   return (
     <>
       <button onClick={handleNewestClick}>최신순</button>
@@ -80,9 +86,13 @@ function App() {
         <input name="search" />
         <button type="submit">검색</button>
       </form>
-
-      <FoodForm onSubmit={createFood} onSubmitSuccess={handleCreateSuccess}/>
-      <FoodList items={sortedItems} onDelete={handleDelete}  onUpdate={updateFood} onUpdateSuccess={handleUpdateSuccess}/>
+      <FoodForm onSubmit={createFood} onSubmitSuccess={handleCreateSuccess} />
+      <FoodList
+        items={sortedItems}
+        onUpdate={updateFood}
+        onUpdateSuccess={handleUpdateSuccess}
+        onDelete={handleDelete}
+      />
       {cursor && (
         <button disabled={isLoading} onClick={handleLoadMore}>
           더보기

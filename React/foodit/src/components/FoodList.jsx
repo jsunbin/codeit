@@ -19,29 +19,30 @@ function FoodListItem({ item, onDelete, onEdit }) {
       <div>{title}</div>
       <div>{calorie}</div>
       <div>{content}</div>
-      <button onClick={handleDeleteClick}>삭제</button>
       <button onClick={handleEditClick}>수정</button>
+      <button onClick={handleDeleteClick}>삭제</button>
     </div>
   );
 }
-export default function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
+
+export default function FoodList({ items, onUpdate, onUpdateSuccess, onDelete }) {
   const [editingId, setEditingId] = useState(null);
 
-  const handleCancel = () => setEditingId(null);
+  const handleCancel = () => {
+    setEditingId(null);
+  };
 
   return (
     <ul className="FoodList">
       {items.map((item) => {
         if (item.id === editingId) {
           const { id, imgUrl, title, calorie, content } = item;
-          const initialValues = { id, imgFile: null, title, calorie, content };
+          const initialValues = { title, calorie, content, imgFile: null };
 
-          const handleSubmit = (formData) => {
-            onUpdate(id, formData);
-          };
+          const handleSubmit = (formData) => onUpdate(id, formData);
 
-          const handleSubmitSuccess = (food) => {
-            onUpdateSuccess(food);
+          const handleSubmitSuccess = (newItem) => {
+            onUpdateSuccess(newItem);
             setEditingId(null);
           };
 
@@ -50,19 +51,16 @@ export default function FoodList({ items, onDelete, onUpdate, onUpdateSuccess })
               <FoodForm
                 initialValues={initialValues}
                 initialPreview={imgUrl}
-                onCancel={handleCancel}
                 onSubmit={handleSubmit}
-                handleSubmitSuccess={handleSubmitSuccess}
-                item={item}
-                onDelete={onDelete}
+                onSubmitSuccess={handleSubmitSuccess}
+                onCancel={handleCancel}
               />
             </li>
           );
         }
-
         return (
           <li key={item.id}>
-            <FoodListItem item={item} onDelete={onDelete} onEdit={setEditingId} />
+            <FoodListItem item={item} onEdit={setEditingId} onDelete={onDelete} />
           </li>
         );
       })}

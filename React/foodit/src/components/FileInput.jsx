@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export default function FileInput({ name, value, initialPreview, onChange }) {
+export default function FileInput({ initialPreview, name, value, onChange }) {
   const [preview, setPreview] = useState(initialPreview);
   const inputRef = useRef();
 
@@ -33,7 +33,11 @@ export default function FileInput({ name, value, initialPreview, onChange }) {
     <div>
       <img src={preview} alt="이미지 미리보기" />
       <input type="file" onChange={handleChange} ref={inputRef} />
-      {value && <button onClick={handleClearClick}>X</button>}
+      {value && (
+        <button type="button" onClick={handleClearClick}>
+          X
+        </button>
+      )}
     </div>
   );
 }
