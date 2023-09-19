@@ -1,14 +1,28 @@
 import React, { useState } from "react";
+import { createFood } from "../API/API";
 import FileInput from "./FileInput";
 import "./FoodForm.css";
 
-export default function FoodForm() {
-  const [values, setValues] = useState({
-    title: "",
-    calorie: 0,
-    content: "",
-    imgFile: null,
-  });
+const INITIAL_VALUES = {
+  title: "",
+  calorie: 0,
+  content: "",
+  imgFile: null,
+};
+function sanitize(type, value) {
+  switch (type) {
+    case "number":
+      return Number(value) || 0;
+
+    default:
+      return value;
+  }
+}
+
+export default function FoodForm({ onSubmitSuccess }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittingError, setSubmittingError] = useState(null);
+  const [values, setValues] = useState(INITIAL_VALUES);
 
   const handleChange = (name, value) => {
     setValues((prev) => ({
@@ -18,12 +32,34 @@ export default function FoodForm() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    handleChange(name, value);
+    const { name, value, type } = e.target;
+    handleChange(name, sanitize(type, value));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("imgFile", values.imgFile);
+    formData.append("title", values.title);
+    formData.append("calorie", values.calorie);
+    formData.append("content", values.content);
+
+    let result;
+    try {
+      setIsSubmitting(null);
+      setIsSubmitting(true);
+      result = await createFood(formData);
+    } catch (error) {
+      setSubmittingError(error);
+      return;
+    } finally {
+      setIsSubmitting(false);
+    }
+
+    const { food } = result;
+    onSubmitSuccess(food);
+    setValues(INITIAL_VALUES);
+
     console.log(values);
   };
 
