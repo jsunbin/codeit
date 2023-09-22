@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFood, deleteFood, getFoods, updateFood } from "./API/API";
 import FoodForm from "./components/FoodForm";
 import FoodList from "./components/FoodList";
+import LocaleContext from "./contexts/LocaleContext";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -81,27 +82,30 @@ function App() {
   }, [order, search]);
 
   return (
-    <>
-      <button onClick={handleNewestClick}>최신순</button>
-      <button onClick={handleCalorieClick}>칼로리순</button>
-      <form onSubmit={handleSearchSubmit}>
-        <input name="search" />
-        <button type="submit">검색</button>
-      </form>
-      <FoodForm onSubmit={createFood} onSubmitSuccess={handleCreateSuccess} />
-      <FoodList
-        items={sortedItems}
-        onUpdate={updateFood}
-        onUpdateSuccess={handleUpdateSuccess}
-        onDelete={handleDelete}
-      />
-      {cursor && (
-        <button disabled={isLoading} onClick={handleLoadMore}>
-          더보기
-        </button>
-      )}
-      {loadingError && <p>{loadingError.message}</p>}
-    </>
+    <LocaleContext.Provider value={'ko'}>
+      <>
+        <button onClick={handleNewestClick}>최신순</button>
+        <button onClick={handleCalorieClick}>칼로리순</button>
+        <form onSubmit={handleSearchSubmit}>
+          <input name="search" />
+          <button type="submit">검색</button>
+        </form>
+        <FoodForm onSubmit={createFood} onSubmitSuccess={handleCreateSuccess} />
+        <FoodList
+          items={sortedItems}
+          onUpdate={updateFood}
+          onUpdateSuccess={handleUpdateSuccess}
+          onDelete={handleDelete}
+        />
+        {cursor && (
+          <button disabled={isLoading} onClick={handleLoadMore}>
+            더보기
+          </button>
+        )}
+        {loadingError && <p>{loadingError.message}</p>}
+      </>
+    </LocaleContext.Provider>
+
   );
 }
 export default App;
