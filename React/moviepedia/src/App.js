@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { createReviews, deleteReview, getReviews, updateReview } from "./API/API";
+import LocaleSelect from "./components/LocaleSelect";
 import ReviewForm from "./components/ReviewForm";
 import ReviewList from "./components/ReviewList";
 import LocaleContext from "./contexts/LocaleContext";
@@ -8,6 +9,7 @@ import useAsync from "./hooks/useAsync";
 const LIMIT = 6;
 
 function App() {
+  const [locale, setLocale] = useState('ko');
   const [items, setItems] = useState([])
   const [order, setOrder] = useState('createdAt');
   const [offset, setOffset] = useState(0)
@@ -70,8 +72,9 @@ function App() {
   
 
   return (
-    <LocaleContext.Provider value={'ko'}>
+    <LocaleContext.Provider value={locale}>
       <>
+        <LocaleSelect value={locale} onChange={setLocale}/>
         <div>
           <button onClick={handleNewestClick}>최신순</button>
           <button onClick={handleBestClick}>베스트순</button>
