@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { createReviews, deleteReview, getReviews, updateReview } from "./API/API";
 import ReviewForm from "./components/ReviewForm";
 import ReviewList from "./components/ReviewList";
+import useAsync from "./hooks/useAsync";
 
 const LIMIT = 6;
 
@@ -10,8 +11,7 @@ function App() {
   const [order, setOrder] = useState('createdAt');
   const [offset, setOffset] = useState(0)
   const [hasNext, setHasNext] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [loadingError, setLoadingError] = useState(null);
+  const [isLoading, loadingError, getReviewsAsync] = useAsync(getReviews)
 
   const sortedItems = items.sort((a, b) => b[order] - a[order]);
 
@@ -28,18 +28,11 @@ function App() {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id))
   };
 
-  const handleLoad = async (options) => {
-    let result;
-    try {
-      setIsLoading(true);
-      setLoadingError(null);
-      result = await getReviews(options);
-    } catch (error) {
-      setLoadingError(error);
-      return;   
-    } finally {
-      setIsLoading(false)
-    }
+  const handleLoad = useCallback( async (options) => {
+    const result = await getReviewsAsync(options);
+    // asyncFunction에서 에러가 난 경우 리턴값을 undefined로 설정해주었기 때문에 아래와 같이 에러 처리를 해줌
+    if (!result) return;
+
     const { reviews, paging } = result;
 
     if (options.offset === 0) {
@@ -51,8 +44,8 @@ function App() {
 
     setOffset(options.offset + reviews.length);
     setHasNext(paging.hasNext)
-  }
-
+  }, [getReviewsAsync])
+  
   const handleLoadMore = () => {
     handleLoad({ order, offset, limit: LIMIT })
   }
@@ -72,7 +65,7 @@ function App() {
 
   useEffect(() => {
     handleLoad({order, offset: 0, limit: LIMIT})
-  }, [order])
+  }, [order, handleLoad])
   
 
   return (
