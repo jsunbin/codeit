@@ -3,13 +3,12 @@ import { createReviews, deleteReview, getReviews, updateReview } from "./API/API
 import LocaleSelect from "./components/LocaleSelect";
 import ReviewForm from "./components/ReviewForm";
 import ReviewList from "./components/ReviewList";
-import LocaleContext from "./contexts/LocaleContext";
+import LocaleContext, { LocaleProvider } from "./contexts/LocaleContext";
 import useAsync from "./hooks/useAsync";
 
 const LIMIT = 6;
 
 function App() {
-  const [locale, setLocale] = useState('ko');
   const [items, setItems] = useState([])
   const [order, setOrder] = useState('createdAt');
   const [offset, setOffset] = useState(0)
@@ -72,9 +71,9 @@ function App() {
   
 
   return (
-    <LocaleContext.Provider value={locale}>
+    <LocaleProvider defaultValue="ko">
       <>
-        <LocaleSelect value={locale} onChange={setLocale}/>
+        <LocaleSelect />
         <div>
           <button onClick={handleNewestClick}>최신순</button>
           <button onClick={handleBestClick}>베스트순</button>
@@ -84,7 +83,7 @@ function App() {
         {hasNext && <button disabled={isLoading} onClick={handleLoadMore}>더보기</button>}
         {loadingError?.message && <span>{loadingError.message}</span>}
       </>
-    </LocaleContext.Provider>
+    </LocaleProvider>
 
   );
   }
