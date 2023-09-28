@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { useLocale } from "../contexts/LocaleContext";
+import React, { useState } from "react";
 import useTranslate from "../hooks/useTranslate";
 import Rating from "./Rating";
 import ReviewForm from "./ReviewForm";

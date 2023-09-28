@@ -17,7 +17,7 @@ const dict = {
 
 function useTranslate() {
   const locale = useLocale();
-  const tranlate = key=> dict[locale][key] || '';
+  const tranlate = key => dict[locale][key] || '';
 
   return tranlate;
 }

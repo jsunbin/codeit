@@ -1,15 +1,14 @@
-const BASE_URL ='https://learn.codeit.kr/api'
+const BASE_URL = 'https://learn.codeit.kr/api'
 
-export async function getReviews({ order="createdAt", offset=0, limit=6 }) {
+export async function getReviews({order = "createdAt", offset = 0, limit = 6}) {
   const query = `order=${order}&offset=${offset}&limit=${limit}`
   const response = await fetch(`${BASE_URL}/film-reviews?${query}`);
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error('네트워크에 오류가 발생했습니다!')
   }
 
-  const data = await response.json();
-  return data;
+  return await response.json();
 }
 
 export async function createReviews(formData) {
@@ -18,12 +17,11 @@ export async function createReviews(formData) {
     body: formData
   });
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error('리뷰 생성에 실패했습니다')
   }
 
-  const data = await response.json();
-  return data;
+  return await response.json();
 }
 
 export async function updateReview(id, formData) {
@@ -32,12 +30,11 @@ export async function updateReview(id, formData) {
     body: formData
   });
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error('리뷰 수정에 실패했습니다')
   }
 
-  const data = await response.json();
-  return data;
+  return await response.json();
 }
 
 export async function deleteReview(id) {
@@ -45,11 +42,10 @@ export async function deleteReview(id) {
     method: 'DELETE',
   });
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error('리뷰 삭제하는데 실패했습니다')
   }
 
-  const data = await response.json();
-  return data;
+  return await response.json();
 }
 
