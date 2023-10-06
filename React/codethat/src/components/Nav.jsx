@@ -13,7 +13,7 @@ function Nav() {
         </Link>
         <ul className={styles.menu}>
           <li><Link to="/courses">카탈로그</Link></li>
-          <li><Link>커뮤니티</Link></li>
+          <li><Link to="/questions">커뮤니티</Link></li>
           <li>
             <UserMenu />
           </li>
