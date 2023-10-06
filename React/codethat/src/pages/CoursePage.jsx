@@ -1,5 +1,5 @@
 import { addWishlist, getCourseBySlug } from "../api";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import Card from "../components/Card";
@@ -11,6 +11,10 @@ function CoursePage() {
   const { courseSlug } = useParams();
   const course = getCourseBySlug(courseSlug);
   const courseColor = getCourseColor(course?.code);
+
+  if (!course) {
+    return <Navigate to="/courses" />;
+  }
 
   const headerStyle = {
     borderTopColor: courseColor,
