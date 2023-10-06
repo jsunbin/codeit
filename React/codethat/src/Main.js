@@ -16,13 +16,13 @@ function Main() {
             <Route path="courses">
               <Route index element={<CourseListPage />} />
               <Route
-                path="react-frontend-development"
+                path=":courseSlug"
                 element={<CoursePage />}
               />
             </Route>
             <Route path="questions">
               <Route index element={<QuestionListPage />} />
-              <Route path="616825" element={<QuestionPage />} />
+              <Route path=":questionId" element={<QuestionPage />} />
             </Route>
             <Route path="wishlist" element={<WishlistPage />} />
           </Route>
