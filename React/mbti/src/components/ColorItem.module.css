@@ -1,0 +1,62 @@
+/* 시작: 컬러 리스트 */
+.card {
+  padding: 16px 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.card:hover {
+  background: #f5f7fb;
+}
+
+.card .index,
+.card .color-hex {
+  color: #bfc8da;
+  font-family: Pretendard;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.card .index {
+  margin-right: 42px;
+  flex-shrink: 0;
+}
+
+.card .mbti {
+  color: #464e5e;
+  font-family: Pretendard;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  border-radius: 8px;
+  background: rgba(178, 189, 204, 0.2);
+  padding: 8px;
+  margin-right: 25px;
+}
+
+.card .arrow {
+  flex-grow: 1;
+  /* width: 100%; */
+  height: 0;
+  border-bottom: 2px dashed #bfc8da;
+  position: relative;
+}
+.card .arrow .arrow-icon {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+.card .color-board {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 3px solid #e8e8e8;
+  background: #9441ff;
+  margin: 0 15px;
+}
+
+/* 끝: 컬러 리스트 */
