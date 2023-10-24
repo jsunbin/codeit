@@ -3,52 +3,69 @@ import classNames from "classnames";
 import styles from "./MbtiSelect.module.css";
 import NewSection from "./NewSection";
 
-export default function MbtiSelect() {
+const optionGroups = [
+  [
+    { value: "E", label: "외향형" },
+    { value: "I", label: "내향형" },
+  ],
+  [
+    { value: "S", label: "감각형" },
+    { value: "N", label: "직관형" },
+  ],
+  [
+    { value: "T", label: "사고형" },
+    { value: "F", label: "감정형" },
+  ],
+  [
+    { value: "J", label: "판단형" },
+    { value: "P", label: "인식형" },
+  ],
+];
+
+function MBTIOptionCard({ selected, label, value, onClick }) {
+  const cardClassName = selected ? classNames(styles["mbti-option-card"], styles.selected) : styles["mbti-option-card"];
+
+  return (
+    <div className={cardClassName} onClick={onClick}>
+      <strong>{value}</strong>
+      {label}
+    </div>
+  );
+}
+
+function MBTIOption({ options, value, onChange }) {
+  return (
+    <div className={styles["mbti-option"]}>
+      {options.map((option) => (
+        <MBTIOptionCard
+          key={option.value}
+          selected={option.value === value}
+          label={option.label}
+          value={option.value}
+          onClick={() => onChange(option.value)}
+        />
+      ))}
+    </div>
+  );
+}
+
+export default function MbtiSelect({ value = "ESTJ", onChange }) {
+  const handleChangeAt = (val, position) => {
+    const nextValue = value.slice(0, position) + val + value.slice(position + 1);
+    onChange(nextValue);
+  };
+
   return (
     <NewSection>
       <h2 className={styles["mbti-section-title"]}>MBTI</h2>
-      <div>
-        <div className={styles["mbti-option"]}>
-          <div className={classNames(styles["mbti-option-card"], styles.selected)}>
-            <strong>E</strong>
-            외향형
-          </div>
-          <div className={styles["mbti-option-card"]}>
-            <strong>I</strong>
-            내향형
-          </div>
-        </div>
-        <div className={styles["mbti-option"]}>
-          <div className={styles["mbti-option-card"]}>
-            <strong>S</strong>
-            감각형
-          </div>
-          <div className={styles["mbti-option-card"]}>
-            <strong>N</strong>
-            직관형
-          </div>
-        </div>
-        <div className={styles["mbti-option"]}>
-          <div className={styles["mbti-option-card"]}>
-            <strong>T</strong>
-            사고형
-          </div>
-          <div className={styles["mbti-option-card"]}>
-            <strong>F</strong>
-            감정형
-          </div>
-        </div>
-        <div className={styles["mbti-option"]}>
-          <div className={styles["mbti-option-card"]}>
-            <strong>J</strong>
-            판단형
-          </div>
-          <div className={styles["mbti-option-card"]}>
-            <strong>P</strong>
-            인식형
-          </div>
-        </div>
-      </div>
+      {optionGroups.map((options, index) => (
+        <MBTIOption
+          key={`${options[0].value}-${options[1].value}`}
+          value={value[index]}
+          options={options}
+          onChange={(val) => handleChangeAt(val, index)}
+        />
+      ))}
     </NewSection>
   );
 }
