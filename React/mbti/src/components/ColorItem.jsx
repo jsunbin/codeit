@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./ColorItem.module.css";
 
-export default function ColorItem() {
+export default function ColorItem({ value, onClick }) {
   return (
-    <div className={styles.card}>
-      <div className={styles.index}>111</div>
-      <div className={styles.mbti}>ISTP</div>
+    <div className={styles.card} onClick={onClick}>
+      <div className={styles.index}>{value.id}</div>
+      <div className={styles.mbti}>{value.mbti}</div>
       <div className={styles.arrow}>
         <span className={styles["arrow-icon"]}>
           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0 0 8 13" fill="none">
@@ -20,8 +20,8 @@ export default function ColorItem() {
           </svg>
         </span>
       </div>
-      <div className={styles["color-board"]}></div>
-      <div className={styles["color-hex"]}>#123455</div>
+      <div className={styles["color-board"]} style={{ background: value.colorCode }}></div>
+      <div className={styles["color-hex"]}>{value.colorCode}</div>
     </div>
   );
 }

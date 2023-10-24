@@ -13,7 +13,8 @@ header,
 footer,
 main,
 ul,
-li {
+li,
+input {
   margin: 0;
   padding: 0;
   border: 0;

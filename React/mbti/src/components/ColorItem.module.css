@@ -9,6 +9,9 @@
 .card:hover {
   background: #f5f7fb;
 }
+.card:active {
+  background: #edf0f5;
+}
 
 .card .index,
 .card .color-hex {
