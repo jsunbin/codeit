@@ -2,12 +2,12 @@ import React from "react";
 import styles from "./ColorInput.module.css";
 import NewSection from "./NewSection";
 
-export default function ColorInput() {
+export default function ColorInput({ value, onClick, onChange, handleColorCodeBlur }) {
   return (
     <NewSection>
       <h2 className={styles["color-input-title"]}>
         컬러
-        <button type="button" className={styles["reset-btn"]}>
+        <button type="button" className={styles["random-btn"]} onClick={onClick}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path
               d="M11.1818 1L13.7272 3.5454L11.1818 6.0908"
@@ -41,8 +41,14 @@ export default function ColorInput() {
         </button>
       </h2>
       <div className={styles["color-input-wrap"]}>
-        <input maxLength={7} className={styles["color-input"]} defaultValue={"#000000"} />
-        <span className={styles["color-preview"]}></span>
+        <input
+          maxLength={7}
+          className={styles["color-input"]}
+          value={value}
+          onBlur={handleColorCodeBlur}
+          onChange={onChange}
+        />
+        <span className={styles["color-preview"]} style={{ background: value }}></span>
       </div>
     </NewSection>
   );

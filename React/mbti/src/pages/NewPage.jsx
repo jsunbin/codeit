@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import ColorInput from "../components/ColorInput";
 import Container from "../components/Container";
 import MbtiSelect from "../components/MbtiSelect";
+import generateColorCode from "../lib/generateColorCode";
+import axios from "../lib/axios";
 import styles from "./NewPage.module.css";
 
 export default function NewPage() {
@@ -14,6 +16,28 @@ export default function NewPage() {
 
   const handleChange = (name, value) => {
     setFormValue((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const hadnleRandomClick = () => {
+    const nextColorCode = generateColorCode();
+    console.log(nextColorCode);
+    handleChange("colorCode", nextColorCode);
+  };
+
+  const handleColorCodeBlur = () => {
+    const isValidColorCode = /^#[a-f0-9]{6}$/i.test(formValue.colorCode);
+    if (!isValidColorCode) {
+      handleChange("colorCode", "#000000");
+    }
+  };
+
+  const handleSubmit = async () => {
+    await axios.post("/color-surveys/", {
+      ...formValue,
+      password: "0000",
+    });
+
+    navigate("/");
   };
 
   return (
@@ -35,9 +59,14 @@ export default function NewPage() {
         </header>
 
         <MbtiSelect value={formValue.mbti} onChange={(newMbti) => handleChange("mbti", newMbti)} />
-        <ColorInput />
+        <ColorInput
+          value={formValue.colorCode}
+          onClick={hadnleRandomClick}
+          onChange={(e) => handleChange("colorCode", e.target.value)}
+          handleColorCodeBlur={handleColorCodeBlur}
+        />
 
-        <button type="submit" className={styles["color-submit-btn"]}>
+        <button type="submit" className={styles["color-submit-btn"]} onClick={handleSubmit}>
           컬러 등록
         </button>
       </Container>

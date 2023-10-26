@@ -7,7 +7,7 @@
   line-height: 32px;
 }
 
-.reset-btn {
+.random-btn {
   display: inline-flex;
   align-items: flex-start;
   gap: 8px;
@@ -16,10 +16,10 @@
   padding: 8px;
   margin-left: 8px;
 }
-.reset-btn:hover {
+.random-btn:hover {
   background: #edf0f5;
 }
-.reset-btn:active {
+.random-btn:active {
   background: #dee4ee;
 }
 
