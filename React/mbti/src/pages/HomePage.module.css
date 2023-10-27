@@ -26,3 +26,9 @@
   cursor: pointer;
 }
 /* 끝: 새 컬러 등록하기 */
+
+@media screen and (max-width: 944px) {
+  .add-new-color {
+    padding: 20px 24px;
+  }
+}

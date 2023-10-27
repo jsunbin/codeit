@@ -3,6 +3,7 @@
   border-radius: 80px;
   background: #f5f7fb;
   text-align: right;
+  position: sticky;
 }
 
 .h1 {
@@ -36,4 +37,37 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+@media screen and (max-width: 944px) {
+  .header {
+    position: sticky;
+    top: 24px;
+    z-index: 1;
+    margin-bottom: 24px;
+  }
+
+  .header-wrap {
+    position: static;
+    padding: 32px;
+    border-radius: 32px;
+    text-align: center;
+  }
+
+  .h1 {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .selected-mbti {
+    font-size: 24px;
+    line-height: 30px;
+    padding: 4px 8px;
+    gap: 8px;
+  }
+
+  .selected-mbti svg {
+    width: 6px;
+    height: 6px;
+  }
 }
