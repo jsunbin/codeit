@@ -24,3 +24,12 @@ const items = [];
 items.push("갑옷");
 items.push("빨간 물약");
 console.log(`${items.join(", ")}을/를 획득했다!`);
+//3. 객체 타입: monster라는 변수를 객체 타입으로 변환
+const monster = {
+    name: "코드잇 고블린",
+    level: 22,
+    skills: ["태권도", "특공무술"],
+};
+console.log(`${monster.name}의 레벨은 ${monster.level}이고,\n` +
+    `${monster.hasGold ? "해치우면 골드를 얻는" : "해치워도 골드를 주지 않는"} 몬스터입니다.\n` +
+    `${monster.skills.length > 0 ? `가진 능력은 ${monster.skills.join(", ")}입니다.` : ""}`);
