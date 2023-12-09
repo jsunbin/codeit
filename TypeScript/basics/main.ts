@@ -30,3 +30,23 @@ let itemPrice: number = 129000;
 let membersOnly: boolean = true;
 let owner: undefined = undefined;
 let seller: null = null;
+
+// 배열
+const cart: string[] = [];
+cart.push("c001");
+cart.push("c002");
+cart.push(3); // Error!
+
+const carts: string[][] = [["c001", "c002"], ["c003"]];
+
+let mySize: number[] = [167, 28];
+mySize = [167, 28, 255];
+mySize = [255];
+mySize = [];
+
+// 튜플
+let mySizeT: [number, number, string] = [167, 28, "M"];
+mySizeT = [167, 28, 255]; // Error!
+mySizeT = [255]; // Error!
+mySizeT = []; // Error!
+mySizeT = [167, "28inch"]; // Error!
