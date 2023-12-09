@@ -88,3 +88,22 @@ let stock: {
   c003: 1,
   c004: "codeit", // Type Error!
 };
+
+// any
+// 무분별한 사용X!
+const productC: any = {
+  id: "c001",
+  name: "코드잇 블랙 후디",
+  price: 129000,
+  sizes: ["M", "L", "XL"],
+}; // => X
+
+const parsedProductA: {
+  name: string;
+  price: number;
+} = JSON.parse('{"name": "코드잇 토트백", "price": 12000}');
+
+const parsedProductB = JSON.parse('{"name": "코드잇 토트백", "price": 12000}') as {
+  name: string;
+  price: number;
+};
