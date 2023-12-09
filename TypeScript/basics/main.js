@@ -77,3 +77,28 @@ const productC = {
 }; // => X
 const parsedProductA = JSON.parse('{"name": "코드잇 토트백", "price": 12000}');
 const parsedProductB = JSON.parse('{"name": "코드잇 토트백", "price": 12000}');
+// 함수 타입
+const codeitmall = {
+    stock: {
+        c001: 3,
+        c002: 1,
+    },
+    cart: [],
+    addToCart,
+    addManyToCart,
+};
+function addToCart(id, quantity = 1) {
+    if (stock[id] < quantity) {
+        return false;
+    }
+    stock[id] -= quantity;
+    for (let i = 0; i < quantity; i++) {
+        cart.push(id);
+    }
+    return true;
+}
+function addManyToCart(...ids) {
+    for (const id of ids) {
+        addToCart(id);
+    }
+}

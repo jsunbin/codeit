@@ -107,3 +107,38 @@ const parsedProductB = JSON.parse('{"name": "코드잇 토트백", "price": 1200
   name: string;
   price: number;
 };
+
+// 함수 타입
+const codeitmall: {
+  stock: { [id: string]: number };
+  cart: string[];
+  addToCart: (id: string, quantity?: number) => boolean;
+  addManyToCart: (...ids: string[]) => void;
+} = {
+  stock: {
+    c001: 3,
+    c002: 1,
+  },
+  cart: [],
+  addToCart,
+  addManyToCart,
+};
+
+function addToCart(id: string, quantity: number = 1): boolean {
+  if (stock[id] < quantity) {
+    return false;
+  }
+
+  stock[id] -= quantity;
+  for (let i = 0; i < quantity; i++) {
+    cart.push(id);
+  }
+
+  return true;
+}
+
+function addManyToCart(...ids: string[]) {
+  for (const id of ids) {
+    addToCart(id);
+  }
+}
