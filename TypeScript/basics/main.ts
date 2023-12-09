@@ -50,3 +50,41 @@ mySizeT = [167, 28, 255]; // Error!
 mySizeT = [255]; // Error!
 mySizeT = []; // Error!
 mySizeT = [167, "28inch"]; // Error!
+
+// 객체
+let productB: {
+  id: string;
+  name: string;
+  price: number;
+  membersOnly?: boolean;
+  sizes: string[];
+} = {
+  id: "c001",
+  name: "코드잇 블랙 후디",
+  price: 129000,
+  membersOnly: true,
+  sizes: ["M", "L", "XL"],
+};
+
+if (productB.membersOnly) {
+  console.log("회원 전용 상품");
+} else {
+  console.log("일반 상품");
+}
+
+// 프로퍼티 이름에 변수를 활용하고 싶을 때
+// JavaScript
+let field = "field name";
+let obj = {
+  [field]: "field value",
+};
+
+// TypeScript
+let stock: {
+  [id: string]: number;
+} = {
+  c001: 3,
+  c002: 0,
+  c003: 1,
+  c004: "codeit", // Type Error!
+};
