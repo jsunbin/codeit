@@ -33,3 +33,21 @@ const monster = {
 console.log(`${monster.name}의 레벨은 ${monster.level}이고,\n` +
     `${monster.hasGold ? "해치우면 골드를 얻는" : "해치워도 골드를 주지 않는"} 몬스터입니다.\n` +
     `${monster.skills.length > 0 ? `가진 능력은 ${monster.skills.join(", ")}입니다.` : ""}`);
+// 함수에 타입 선언: 함수들에 타입을 명시적으로 지정해 주세요. 이때 함수의 리턴 타입도 명시적으로 지정
+function getDiff(fromPoint, toPoint) {
+    let dx = toPoint[0] - fromPoint[0];
+    let dy = toPoint[1] - fromPoint[1];
+    return [dx, dy];
+}
+const monsterB = {
+    name: "고블린",
+    level: 22,
+    skills: ["태권도", "특공무술"],
+    move(fromPoint, toPoint) {
+        let [dx, dy] = getDiff(fromPoint, toPoint);
+        console.log(`오른쪽으로 ${dx} 위쪽으로 ${dy} 만큼 이동!`);
+    },
+};
+const currentB = [0, 0];
+const targetB = [4, 5];
+monsterB.move(currentB, targetB);
