@@ -102,3 +102,31 @@ function addManyToCart(...ids) {
         addToCart(id);
     }
 }
+// Enum
+var Size;
+(function (Size) {
+    Size["S"] = "S";
+    Size["M"] = "M";
+    Size["L"] = "L";
+    Size["XL"] = "XL";
+})(Size || (Size = {}));
+let productD = {
+    id: "c001",
+    name: "코드잇 블랙 후디",
+    price: 129000,
+    sizes: [Size.M, Size.L],
+};
+console.log(Size.S);
+console.log(Size.M);
+console.log(Size.L);
+console.log(Size.XL);
+function findProduct(size) {
+    if (!size) {
+        console.log("전체 사이즈로 검색");
+        return;
+    }
+    console.log("특정 사이즈로 검색");
+}
+findProduct(Size.M);
+findProduct(Size.S);
+findProduct();
