@@ -67,7 +67,7 @@ const monsterB: {
   name: "고블린",
   level: 22,
   skills: ["태권도", "특공무술"],
-  move(fromPoint: number[], toPoint: number[]) {
+  move(fromPoint, toPoint) {
     let [dx, dy] = getDiff(fromPoint, toPoint);
     console.log(`오른쪽으로 ${dx} 위쪽으로 ${dy} 만큼 이동!`);
   },
@@ -76,3 +76,14 @@ const monsterB: {
 const currentB: [number, number] = [0, 0];
 const targetB: [number, number] = [4, 5];
 monsterB.move(currentB, targetB);
+
+// Enum: 게임 캐릭터의 직업을  Job이라는 이름의 타입스크립트 Enum 타입으로 만들라.
+enum Job {
+  Knight = "Knight",
+  Archer = "Archer",
+  Mage = "Mage",
+  Priest = "Priest",
+  Thief = "Thief",
+}
+
+console.log(Job);

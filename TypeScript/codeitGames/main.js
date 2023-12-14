@@ -51,3 +51,13 @@ const monsterB = {
 const currentB = [0, 0];
 const targetB = [4, 5];
 monsterB.move(currentB, targetB);
+// Enum: 게임 캐릭터의 직업을  Job이라는 이름의 타입스크립트 Enum 타입으로 만들라.
+var Job;
+(function (Job) {
+    Job["Knight"] = "Knight";
+    Job["Archer"] = "Archer";
+    Job["Mage"] = "Mage";
+    Job["Priest"] = "Priest";
+    Job["Thief"] = "Thief";
+})(Job || (Job = {}));
+console.log(Job);
