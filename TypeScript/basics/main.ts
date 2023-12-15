@@ -181,3 +181,48 @@ function findProduct(size?: Size) {
 findProduct(Size.M);
 findProduct(Size.S);
 findProduct();
+
+// Interface
+enum SizeI {
+  S = "S",
+  M = "M",
+  L = "L",
+  XL = "XL",
+}
+
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  membersOnly?: boolean;
+  sizes: SizeI[];
+}
+
+// extends로 Product 타입을 상속한 후, size
+interface ClothingProduct extends Product {
+  sizes: SizeI[];
+}
+const productInterface1: ClothingProduct = {
+  id: "c001",
+  name: "코드잇 블랙 후드 집업",
+  price: 129000,
+  membersOnly: true,
+  sizes: [SizeI.M, SizeI.L],
+};
+
+const productInterface2: Product = {
+  id: "d001",
+  name: "코드잇 텀블러",
+  price: 25000,
+};
+
+// interface로 함수 정의하기
+interface PrintProductFunction {
+  (product: Product): void;
+}
+const printProduct: PrintProductFunction = (product) => {
+  console.log(`${product.name}의 가격은 ${product.price}원입니다.`);
+};
+
+printProduct(productInterface1);
+printProduct(productInterface2);

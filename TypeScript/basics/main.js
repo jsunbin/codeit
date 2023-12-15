@@ -130,3 +130,28 @@ function findProduct(size) {
 findProduct(Size.M);
 findProduct(Size.S);
 findProduct();
+// Interface
+var SizeI;
+(function (SizeI) {
+    SizeI["S"] = "S";
+    SizeI["M"] = "M";
+    SizeI["L"] = "L";
+    SizeI["XL"] = "XL";
+})(SizeI || (SizeI = {}));
+const productInterface1 = {
+    id: "c001",
+    name: "코드잇 블랙 후드 집업",
+    price: 129000,
+    membersOnly: true,
+    sizes: [SizeI.M, SizeI.L],
+};
+const productInterface2 = {
+    id: "d001",
+    name: "코드잇 텀블러",
+    price: 25000,
+};
+const printProduct = (product) => {
+    console.log(`${product.name}의 가격은 ${product.price}원입니다.`);
+};
+printProduct(productInterface1);
+printProduct(productInterface2);
