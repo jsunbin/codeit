@@ -87,3 +87,32 @@ enum Job {
 }
 
 console.log(Job);
+
+// Interface: Monster 라는 이름으로 Interface 를 부탁드려요~!그리고 주로 데이터베이스에 저장할 항목들이니까 Entity 라는 Interface를 아래 표를 참고해서 만드신 다음에, Monster 에서 Entity를 상속 받아 주세요!
+interface Entity {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface Monster extends Entity {
+  name: string;
+  level: number;
+  hasGold?: boolean;
+  skills: string[];
+}
+
+let monsterI: Monster = {
+  id: "g001",
+  name: "고블린",
+  level: 22,
+  skills: ["태권도", "특공무술"],
+  createdAt: new Date(),
+  updatedAt: new Date(),
+};
+
+console.log(
+  `${monsterI.name}(${monsterI.id})의 레벨은 ${monsterI.level}이고,\n` +
+    `${monsterI.hasGold ? "해치우면 골드를 얻는" : "해치워도 골드를 주지 않는"} 몬스터입니다.\n` +
+    `${monsterI.skills.length > 0 ? `가진 능력은 ${monsterI.skills.join(", ")}입니다.` : ""}`
+);
