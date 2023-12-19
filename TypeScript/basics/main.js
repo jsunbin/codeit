@@ -10,3 +10,9 @@ function printSize(size) {
 }
 printSize(small);
 printSize(large);
+const cart = ["c001", "c001", "c002"];
+const user = {
+    username: "codeit",
+    email: "typescript@codeit.kr",
+    cart,
+};

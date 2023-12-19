@@ -12,3 +12,29 @@ function printSize(size: number) {
 
 printSize(small);
 printSize(large);
+
+// 타입 별칭 ===============
+// interface처럼 여러군데서 사용 가능
+// 타입 별칭은 모든 타입에 사용 가능 객체타입은 되도록이면 interface 사용을 권장
+type Cart = string[];
+
+type CartResultCallback = (result: boolean) => void;
+
+interface Product {
+  id: string;
+  name: string;
+}
+
+const cart: Cart = ["c001", "c001", "c002"];
+
+interface User {
+  username: string;
+  email: string;
+  cart: Cart;
+}
+
+const user: User = {
+  username: "codeit",
+  email: "typescript@codeit.kr",
+  cart,
+};
