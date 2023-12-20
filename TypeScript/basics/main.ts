@@ -79,3 +79,67 @@ const monster: Monster = {
 const current: Point = [0, 0];
 const target: Point = [4, 5];
 monster.move(current, target);
+
+// Union 타입 ===============
+// 두가지 이상의 타입을 고려하고자 할 때 사용
+enum ClothingSize {
+  S = "S",
+  M = "M",
+  L = "L",
+  XL = "XL",
+}
+
+// type ClothingSize = 'S' | 'M' | 'L' | 'XL';
+
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  membersOnly?: boolean;
+}
+
+interface ClothingProduct extends Product {
+  sizes: ClothingSize[];
+  color: string;
+}
+
+type ShoeSize = 220 | 225 | 230 | 235 | 240 | 245 | 250 | 255 | 260;
+
+interface ShoeProduct extends Product {
+  sizes: ShoeSize[];
+  handmade: boolean;
+}
+
+function printSizes(product: ClothingProduct | ShoeProduct) {
+  const availableSizes = product.sizes.join(", ");
+  console.log(`구매 가능한 사이즈는 다음과 같습니다: ${availableSizes}`);
+
+  if ("color" in product) {
+    console.log(`색상: ${product.color}`);
+  }
+
+  if ("handmade" in product) {
+    console.log(product.handmade ? "이 상품은 장인이 직접 만듭니다." : "이 상품은 공장에서 만들어졌습니다.");
+  }
+}
+
+const product1: ClothingProduct = {
+  id: "c001",
+  name: "코드잇 블랙 후드 집업",
+  price: 129000,
+  membersOnly: true,
+  sizes: [ClothingSize.M, ClothingSize.L],
+  color: "black",
+};
+
+const product2: ShoeProduct = {
+  id: "s001",
+  name: "코드잇 스니커즈",
+  price: 69000,
+  membersOnly: false,
+  sizes: [220, 230, 240, 260, 280],
+  handmade: false,
+};
+
+printSizes(product1);
+printSizes(product2);
