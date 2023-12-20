@@ -116,3 +116,53 @@ console.log(
     `${monsterI.hasGold ? "해치우면 골드를 얻는" : "해치워도 골드를 주지 않는"} 몬스터입니다.\n` +
     `${monsterI.skills.length > 0 ? `가진 능력은 ${monsterI.skills.join(", ")}입니다.` : ""}`
 );
+
+// Union: 무기냐 방어구냐
+/**
+ * Equipment라는 장비 타입을 상속받은 Weapon 무기 타입과 Armor 방어구 타입이 있습니다.
+ * printEquipment() 함수에서 이 두 타입을 모두 허용하면서 각각의 경우에 이 장비는 공격력을 ___ 증가 시킵니다. 또는 이 장비는 방어력을 ___ 증가 시킵니다.라는 문장을 출력하려고 합니다.
+ * 주어진 코드에서 타입 오류가 없도록 printEquiment() 함수를 수정해 보세요.
+ */
+interface Equipment {
+  id: string;
+  name: string;
+  price: number;
+}
+
+interface Weapon extends Equipment {
+  attack: number;
+}
+
+interface Armor extends Equipment {
+  defence: number;
+}
+
+function printEquipment(equipment: Weapon | Armor) {
+  console.log(`이름: ${equipment.name}`);
+  if ("attack" in equipment) {
+    // 무기인 경우 아래 코드를 실행합니다.
+    console.log(`이 장비는 공격력을 ${equipment.attack} 증가 시킵니다.`);
+  }
+
+  if ("defence" in equipment) {
+    //   방어구인 경우 아래 코드를 실행합니다.
+    console.log(`이 장비는 방어력을 ${equipment.defence} 증가 시킵니다.`);
+  }
+}
+
+const item1: Weapon = {
+  id: "w001",
+  name: "전쟁 도끼",
+  price: 100,
+  attack: 15,
+};
+
+const item2: Armor = {
+  id: "a001",
+  name: "사슬 갑옷",
+  price: 200,
+  defence: 52,
+};
+
+printEquipment(item1);
+printEquipment(item2);
