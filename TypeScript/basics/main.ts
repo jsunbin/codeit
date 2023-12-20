@@ -143,3 +143,56 @@ const product2: ShoeProduct = {
 
 printSizes(product1);
 printSizes(product2);
+
+// Intersection ===============
+// 여러 객체 타입을 합칠 때 사용
+interface Id {
+  id: string;
+}
+
+interface TimeStamp {
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+type Product = Id & {
+  name: string;
+  price: number;
+  membersOnly?: boolean;
+};
+
+type User = Id &
+  TimeStamp & {
+    username: string;
+    email: string;
+  };
+
+type Review = Id &
+  TimeStamp & {
+    productId: string;
+    userId: string;
+    content: string;
+  };
+
+const product: Product = {
+  id: "c001",
+  name: "코드잇 블랙 후드티",
+  price: 129000,
+};
+
+const user: User = {
+  id: "user0001",
+  username: "codeit",
+  email: "typescript@codeit.kr",
+  createdAt: new Date(),
+  updatedAt: new Date(),
+};
+
+const review: Review = {
+  id: "review001",
+  userId: user.id,
+  productId: product.id,
+  content: "아주 좋음",
+  createdAt: new Date(),
+  updatedAt: new Date(),
+};

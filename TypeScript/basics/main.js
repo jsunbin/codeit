@@ -73,3 +73,23 @@ const product2 = {
 };
 printSizes(product1);
 printSizes(product2);
+const product = {
+    id: "c001",
+    name: "코드잇 블랙 후드티",
+    price: 129000,
+};
+const user = {
+    id: "user0001",
+    username: "codeit",
+    email: "typescript@codeit.kr",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+};
+const review = {
+    id: "review001",
+    userId: user.id,
+    productId: product.id,
+    content: "아주 좋음",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+};
