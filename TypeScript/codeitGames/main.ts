@@ -166,3 +166,34 @@ const item2: Armor = {
 
 printEquipment(item1);
 printEquipment(item2);
+
+// Intersection: 공격과 방어를 동시에
+// printEquipmentIntersection() 함수의 타입과 item1Intersection 변수의 타입을 WeaponIntersection 타입과 ArmorIntersection 타입을 합친 타입으로
+interface EquipmentIntersection {
+  id: string;
+  name: string;
+  price: number;
+}
+
+interface WeaponIntersection extends EquipmentIntersection {
+  attack: number;
+}
+
+interface ArmorIntersection extends EquipmentIntersection {
+  defence: number;
+}
+
+function printEquipmentIntersection(equipment: WeaponIntersection & ArmorIntersection) {
+  console.log(`이름: ${equipment.name}`);
+  console.log(`이 장비는 공격력을 ${equipment.attack}, 방어력을 ${equipment.defence} 증가 시킵니다.`);
+}
+
+const item1Intersection: WeaponIntersection & ArmorIntersection = {
+  id: "g001",
+  name: "서리불꽃 글러브",
+  price: 100,
+  attack: 5,
+  defence: 42,
+};
+
+printEquipmentIntersection(item1Intersection);
