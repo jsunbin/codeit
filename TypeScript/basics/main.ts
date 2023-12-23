@@ -196,3 +196,34 @@ const review: Review = {
   createdAt: new Date(),
   updatedAt: new Date(),
 };
+
+// keyof 와 typeof ===============
+/**
+ * keyof: 리터럴 타입을 union 하는 방식 대신 사용 가능 => 유지보수에 용의
+ * typeof: 이미 존재하는 타입을 가져와서 타입을 정의할 때 사용
+ */
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  salePrice: number;
+  membersOnly?: boolean;
+}
+
+const productTableKeys: (keyof Product)[] = ["name", "price", "salePrice", "membersOnly"];
+
+const product: Product = {
+  id: "c001",
+  name: "코드잇 블랙 후드 집업",
+  price: 129000,
+  salePrice: 98000,
+  membersOnly: true,
+};
+
+for (let key of productTableKeys) {
+  console.log(`${key} | ${product[key]}`);
+}
+
+let product2: typeof product;
+
+console.log(typeof product);
