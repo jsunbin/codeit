@@ -227,3 +227,46 @@ for (let key of productTableKeys) {
 let product2: typeof product;
 
 console.log(typeof product);
+
+// 제네릭 ===============
+const shoeSizes: number[] = [230, 250, 280];
+shoeSizes.map((num) => {});
+
+const clothingSizes: string[] = ["M", "L", "XL"];
+clothingSizes.map((names) => {});
+
+function printArray<T>(items: T[]) {
+  for (const item of items) {
+    console.log(item);
+  }
+}
+
+printArray(shoeSizes);
+printArray(clothingSizes);
+
+// interface
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  membersOnly?: boolean;
+}
+
+interface SizeProduct<T> extends Product {
+  sizes: T[];
+}
+
+enum ClothingSize {
+  S = "S",
+  M = "M",
+  L = "L",
+  XL = "XL",
+}
+
+// 타입 별칭
+type Pair<T> = [T, T];
+type Pair<T, U, V> = [T, T]; // 여러개 사용할 때, 긴 이름의 타입 파라미터를 사용하고 싶을 때는 TItem, UItem와 같이 사용한다.
+const point: Pair<number> = [1, 2];
+const fullname: Pair<string> = ["김", "코드잇"];
+
+const map = new Map<string, Product>();

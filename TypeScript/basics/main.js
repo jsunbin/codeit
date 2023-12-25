@@ -106,3 +106,24 @@ for (let key of productTableKeys) {
 }
 let product2;
 console.log(typeof product);
+// 제네릭 ===============
+const shoeSizes = [230, 250, 280];
+shoeSizes.map((num) => { });
+const clothingSizes = ["M", "L", "XL"];
+clothingSizes.map((names) => { });
+function printArray(items) {
+    for (const item of items) {
+        console.log(item);
+    }
+}
+printArray(shoeSizes);
+printArray(clothingSizes);
+(function (ClothingSize) {
+    ClothingSize["S"] = "S";
+    ClothingSize["M"] = "M";
+    ClothingSize["L"] = "L";
+    ClothingSize["XL"] = "XL";
+})(ClothingSize || (ClothingSize = {}));
+const point = [1, 2];
+const fullname = ["김", "코드잇"];
+const map = new Map();
