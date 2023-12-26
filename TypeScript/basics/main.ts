@@ -270,3 +270,10 @@ const point: Pair<number> = [1, 2];
 const fullname: Pair<string> = ["김", "코드잇"];
 
 const map = new Map<string, Product>();
+
+// 제네릭 실습: Map 자료구조 활용하기 ===============
+const stock = new Map<string, number>();
+stock.set("g001", 1);
+stock.set("g002", 2);
+console.log(stock.get("g001"));
+console.log(stock.get("g002"));
