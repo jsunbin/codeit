@@ -43,6 +43,9 @@ function RegisterPage() {
      * 회원 생성이 성공하면 로그인을 시도한다
      * 로그인이 성공하면 `/me`로 이동한다
      */
+    axios.post('/users', {
+      name, email, password
+    })
   }
 
   return (
