@@ -7,6 +7,7 @@ import Link from '../components/Link';
 import GoogleImage from '../assets/google.svg';
 import styles from './RegisterPage.module.css';
 import { useToaster } from '../contexts/ToasterProvider';
+import axios from '../lib/axios';
 
 function RegisterPage() {
   const [values, setValues] = useState({
@@ -34,6 +35,10 @@ function RegisterPage() {
       return;
     }
     const { name, email, password } = values;
+    await axios.post('/users', {
+      name, email, password
+    })
+
     console.log({ name, email, password });
   }
 
