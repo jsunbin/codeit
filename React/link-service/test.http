@@ -1,0 +1,27 @@
+POST https://learn.codeit.kr/api/avatar-service/users
+Content-Type: application/json
+
+{
+  "email": "jjay@land.com",
+  "name": "jjay",
+  "password": "jjay1234"
+}
+
+
+### 
+POST https://learn.codeit.kr/api/avatar-service/auth/login
+Content-Type: application/json
+
+{
+  "email": "jjay@land.com",
+  "password": "jjay1234"
+}
+
+###
+POST https://learn.codeit.kr/api/avatar-service/auth/login
+Content-Type: application/json
+
+{
+  "email": "fubao@everland.com",
+  "password": "fubao0720"
+}

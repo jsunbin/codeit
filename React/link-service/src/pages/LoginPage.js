@@ -32,6 +32,15 @@ function LoginPage() {
      * 서버에 로그인을 시도합니다
      * 로그인이 성공하면 `/me`로 이동합니다
      */
+    const { email, password } = values;
+    await axios.post('/auth/login', {
+      email,
+      password,
+    }, {
+      withCredentials: true,
+    })
+
+    navigate('/me');
   }
 
   return (
