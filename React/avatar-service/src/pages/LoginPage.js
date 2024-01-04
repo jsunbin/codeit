@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from '../lib/axios';
 import Label from '../components/Label';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -12,6 +14,7 @@ function LoginPage() {
     email: '',
     password: '',
   });
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -25,8 +28,10 @@ function LoginPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     const { email, password } = values;
-    console.log({ email, password });
+    await axios.post('/auth/login', { email, password }, { withCredentials: true });
+    navigate('/me');
   }
+  
 
   return (
     <>
