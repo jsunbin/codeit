@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import axios from '../lib/axios';
 
 const AuthContext = createContext({
@@ -36,6 +36,11 @@ export function AuthProvider({ children }) {
     const nextUser = res.data;
     setUser(nextUser);
   }
+
+  useEffect(() => {
+    getMe();
+  }, [third])
+  
 
   return (
     <AuthContext.Provider value={{
