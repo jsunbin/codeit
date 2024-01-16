@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from '../lib/axios';
 import Label from '../components/Label';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -8,7 +9,7 @@ import Link from '../components/Link';
 import GoogleImage from '../assets/google.svg';
 import styles from './RegisterPage.module.css';
 import { useToaster } from '../contexts/ToasterProvider';
-import axios from '../lib/axios';
+import { useAuth } from '../contexts/AuthProvider';
 
 function RegisterPage() {
   const [values, setValues] = useState({
@@ -17,8 +18,9 @@ function RegisterPage() {
     password: '',
     passwordRepeat: '',
   });
-  const navigate = useNavigate();
   const toast = useToaster();
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -31,17 +33,16 @@ function RegisterPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-  
+
     if (values.password !== values.passwordRepeat) {
       toast('warn', '비밀번호가 일치하지 않습니다.');
       return;
     }
     const { name, email, password } = values;
     await axios.post('/users', { name, email, password });
-    await axios.post('/auth/login', { email, password }, { withCredentials: true });
+    await login({ email, password });
     navigate('/me');
   }
-  
 
   return (
     <>
@@ -89,7 +90,7 @@ function RegisterPage() {
           className={styles.Input}
           name="password"
           type="password"
-          placeholder="비밀번호"
+          placeholder="특수문자 포함, 16자 이상"
           value={values.password}
           onChange={handleChange}
         />
