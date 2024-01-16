@@ -49,7 +49,7 @@ function RegisterPage() {
       name, email, password
     })
 
-    await login({ email, password});
+    await login({ email, password });
 
     navigate('/me');
   }

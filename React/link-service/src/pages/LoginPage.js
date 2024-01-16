@@ -34,7 +34,7 @@ function LoginPage() {
      * 로그인이 성공하면 `/me`로 이동합니다
      */
     const { email, password } = values;
-    await login({ email, password })
+    login({ email, password });
 
     navigate('/me');
   }

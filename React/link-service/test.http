@@ -34,3 +34,18 @@ Content-Type: application/json
   "email": "fubao@everland.com",
   "password": "fubao0720"
 }
+
+
+###
+GET https://learn.codeit.kr/api/link-service/users/me/links
+Cookie: access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMDgiLCJpYXQiOjE3MDUzODY3MzMsImV4cCI6MTcwNTk5MTUzM30.lwWyfw3-bCmPxi_VlLkYJQ24iPCdrF7ZP92EKO89RBI
+
+
+###
+POST https://learn.codeit.kr/api/link-service/auth/login
+Content-Type: application/json
+
+{
+  "email": "huibao@everland.com",
+  "password": "huibao0707"
+}

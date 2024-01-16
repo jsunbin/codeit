@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext} from 'react';
 import axios from '../lib/axios';
 
 const AuthContext = createContext({
@@ -24,6 +24,7 @@ export function AuthProvider({ children }) {
       password,
     });
 
+    // 로그인 후, 유저 데이터를 가져오고 state 값을 변경해 줄 것
     await getMe()
   }
 
@@ -39,7 +40,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     getMe();
-  }, [third])
+  }, [])
   
 
   return (
