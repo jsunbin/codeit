@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../lib/axios';
 import Label from '../components/Label';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -18,7 +17,7 @@ function SettingPage() {
     bio: '',
   });
   const navigate = useNavigate();
-  const { user, updateMe } = useAuth();
+  const { user, updateMe } = useAuth(true);
 
   function handleChange(name, value) {
     setValues((prevValues) => ({
