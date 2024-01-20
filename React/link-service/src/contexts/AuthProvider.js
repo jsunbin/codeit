@@ -25,6 +25,13 @@ export function AuthProvider({ children }) {
     try {
       const res = await axios.get('/users/me');
       nextUser = res.data;
+    } catch (error) {
+      // // 401에러 처리 -> axios에서 Interceptor로 처리
+      // if (error.response?.status === 401) {
+      //   await axios.post('/auth/token/refresh');
+      //   const res = await axios.get('/users/me');
+      //   nextUser = res.data;
+      // }
     } finally {
       setValues((prevValues) => ({
         ...prevValues,

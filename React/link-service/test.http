@@ -49,3 +49,7 @@ Content-Type: application/json
   "email": "huibao@everland.com",
   "password": "huibao0707"
 }
+
+###
+POST https://learn.codeit.kr/api/avatar-service/auth/token/refresh
+Cookie: refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NSIsImlhdCI6MTcwNTc1NzQ5NCwiZXhwIjoxNzA2MzYyMjk0fQ.8yP1Dy_Bu9oOj3lHwwKw4lyoaJ-caC_5oluUsiLWJAE
