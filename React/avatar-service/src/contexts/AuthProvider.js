@@ -13,8 +13,6 @@ const AuthContext = createContext({
 });
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [avatar, setAvatar] = useState(null);
   const [values, setValues] = useState({
     user: null,
     avatar: null,
@@ -33,7 +31,6 @@ export function AuthProvider({ children }) {
       user = res.data;
     } catch (error) {
     } finally {
-      setUser(user);
       setValues((prevValues) => ({
         ...prevValues,
         user: user,
@@ -68,7 +65,11 @@ export function AuthProvider({ children }) {
   }
 
   async function logout() {
-    /** @TODO 로그아웃 구현하기 */
+    await axios.delete('/auth/logout');
+    setValues((prevValues) => ({
+      ...prevValues,
+      user: null,
+    }))
   }
 
   async function updateMe({ name, email }) {
