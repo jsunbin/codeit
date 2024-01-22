@@ -53,3 +53,7 @@ Content-Type: application/json
 ###
 POST https://learn.codeit.kr/api/avatar-service/auth/token/refresh
 Cookie: refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NSIsImlhdCI6MTcwNTc1NzQ5NCwiZXhwIjoxNzA2MzYyMjk0fQ.8yP1Dy_Bu9oOj3lHwwKw4lyoaJ-caC_5oluUsiLWJAE
+
+###
+DELETE https://learn.codeit.kr/api/avatar-service/auth/logout
+Cookie: Set-Cookie: access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NSIsImlhdCI6MTcwNTkwODkxNywiZXhwIjoxNzA1OTEyNTE3fQ.WJl2pZdyfqp1JtASpcI4UHOGSlRWHd8YKOw9uhRGovw
